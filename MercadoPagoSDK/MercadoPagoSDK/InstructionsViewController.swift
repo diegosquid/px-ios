@@ -127,6 +127,7 @@ open class InstructionsViewController: MercadoPagoUIViewController, UITableViewD
                 return headerCell
             } else {
                 let subtitleCell = self.tableView.dequeueReusableCell(withIdentifier: "subtitleNib") as! InstructionsSubtitleTableViewCell
+                subtitleCell.fillCell(instruction: self.instructionsInfo!.instructions[0])
                 subtitleCell.selectionStyle = .none
                 return subtitleCell
             }

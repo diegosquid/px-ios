@@ -17,4 +17,15 @@ class InstructionsSubtitleTableViewCell: UITableViewCell {
         title.font = Utils.getFont(size: title.font.pointSize)
 
     }
+    
+    func fillCell(instruction: Instruction) {
+        if let subtitle = instruction.subtitle  {
+            let attributedTitle = NSMutableAttributedString(string: subtitle, attributes: [NSFontAttributeName: Utils.getFont(size: 22)])
+            self.title.attributedText = attributedTitle
+        } else {
+            let string = "Paga con estos datos".localized
+            let attributedTitle = NSMutableAttributedString(string: string, attributes: [NSFontAttributeName: Utils.getFont(size: 22)])
+            self.title.attributedText = attributedTitle
+        }
+    }
 }
