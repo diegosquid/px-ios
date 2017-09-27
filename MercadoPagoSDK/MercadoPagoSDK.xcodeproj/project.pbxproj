@@ -588,6 +588,7 @@
 		FC45F1241E8D50F2008D4831 /* UnlockCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC45F1211E8D50F2008D4831 /* UnlockCardTableViewCell.swift */; };
 		FC45F1251E8D50F2008D4831 /* UnlockCardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC45F1221E8D50F2008D4831 /* UnlockCardTableViewCell.xib */; };
 		FC45F1261E8D50F2008D4831 /* UnlockCardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC45F1221E8D50F2008D4831 /* UnlockCardTableViewCell.xib */; };
+		FC7146A31F7BF65A00224B4E /* InstructionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7146A21F7BF65A00224B4E /* InstructionsViewModel.swift */; };
 		FC7202DB1EA4FF6000A923A6 /* DiscountCouponTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7202DA1EA4FF6000A923A6 /* DiscountCouponTest.swift */; };
 		FC7E14981F1CFB73005DCAC4 /* SecurityCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7E14971F1CFB73005DCAC4 /* SecurityCodeViewModel.swift */; };
 		FC7E14991F1CFB73005DCAC4 /* SecurityCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7E14971F1CFB73005DCAC4 /* SecurityCodeViewModel.swift */; };
@@ -1005,6 +1006,7 @@
 		FC20C9D11F05580E003A018C /* ArrayExtensionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensionsTest.swift; sourceTree = "<group>"; };
 		FC45F1211E8D50F2008D4831 /* UnlockCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlockCardTableViewCell.swift; sourceTree = "<group>"; };
 		FC45F1221E8D50F2008D4831 /* UnlockCardTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnlockCardTableViewCell.xib; sourceTree = "<group>"; };
+		FC7146A21F7BF65A00224B4E /* InstructionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsViewModel.swift; sourceTree = "<group>"; };
 		FC7202DA1EA4FF6000A923A6 /* DiscountCouponTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscountCouponTest.swift; sourceTree = "<group>"; };
 		FC7E14971F1CFB73005DCAC4 /* SecurityCodeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityCodeViewModel.swift; sourceTree = "<group>"; };
 		FC7E149A1F1D0742005DCAC4 /* SecurityCodeViewModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityCodeViewModelTest.swift; sourceTree = "<group>"; };
@@ -1735,6 +1737,7 @@
 			children = (
 				4B31AA3C1E5A07960084C5DB /* Cells */,
 				4B762E9A1DCFAF4700694336 /* InstructionsViewController.swift */,
+				FC7146A21F7BF65A00224B4E /* InstructionsViewModel.swift */,
 				4B762E9B1DCFAF4700694336 /* InstructionsViewController.xib */,
 			);
 			name = Instructions;
@@ -2449,6 +2452,7 @@
 				7619E9451DF1B5D300CEFAC1 /* PaymentOptionDrawable.swift in Sources */,
 				76EEF75D1D674BA80095D5A5 /* CardInformation.swift in Sources */,
 				0F9883321AD2AB3C00F750F0 /* CustomServer.swift in Sources */,
+				FC7146A31F7BF65A00224B4E /* InstructionsViewModel.swift in Sources */,
 				761B893A1C625C130015D0BE /* MercadoPagoUIViewController.swift in Sources */,
 				765F8E621DCA59C500943FAC /* PurchaseItemDetailTableViewCell.swift in Sources */,
 				4BAE1D521DCBE9340000ED5C /* ConfirmEmailTableViewCell.swift in Sources */,

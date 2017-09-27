@@ -36,7 +36,7 @@ open class Instruction: NSObject {
         }
         
         if json["accreditation_comment"] != nil && !(json["accreditation_comment"]! is NSNull) {
-            instruction.accreditationMessage = (json["accreditation_comment"]! as? String)!
+            instruction.accreditationComment = (json["accreditation_comment"]! as? String)!
         }
 
         if json["references"] != nil && !(json["references"]! is NSNull) {
@@ -96,6 +96,14 @@ open class Instruction: NSObject {
             "accreditationMessage": self.accreditationMessage
         ]
         return obj
+    }
+    
+    open func hasSubtitle() -> Bool {
+        return !String.isNullOrEmpty(subtitle)
+    }
+    
+    open func hasSecondaryInformation() -> Bool {
+        return !Array.isNullOrEmpty(secondaryInfo)
     }
 }
 

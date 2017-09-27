@@ -123,38 +123,41 @@ class InstructionBodyTableViewCell: UITableViewCell {
 
             }
             if instruction.accreditationMessage != "" {
-
                 let clockImage = NSTextAttachment()
                 clockImage.image = MercadoPago.getImage("iconTime")
                 let clockAttributedString = NSAttributedString(attachment: clockImage)
-                
                 let labelAttributedString = NSMutableAttributedString(string: String(describing: " "+instruction.accreditationMessage), attributes: getAttributes(fontSize: 12, color: UIColor.gray))
                 labelAttributedString.insert(clockAttributedString, at: 0)
                 let labelTitle = labelAttributedString
-            
-
                 let label = createLabel(labelAtributedText: labelTitle)
-
-//                let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 16, height: 16))
-//                image.image = MercadoPago.getImage("iconTime")
-//                image.translatesAutoresizingMaskIntoConstraints = false
-//                self.view.addSubview(image)
-
                 let views = ["label": label] as [String : UIView]
 
-//                let widthConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[label]-(\((UIScreen.main.bounds.width - label.frame.width - 16)/2))-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-//                NSLayoutConstraint.activate(widthConstraints)
                 Utils.setContrainsVertical(label: label, previus: previus, constrain: 30)
                 Utils.setContrainsHorizontal(views: views, constrain: 20)
                 
                 let labelHeight = label.requiredHeight()
                 label.frame.size.width = view.frame.width
                 label.frame.size.height = labelHeight
-                //let verticalConstraint = NSLayoutConstraint(item: image, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: label, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
-                //view.addConstraint(verticalConstraint)
 
                 previus = label
             }
+
+            if instruction.accreditationComment != "" {
+                let labelAttributedString = NSMutableAttributedString(string: String(describing: instruction.accreditationComment), attributes: getAttributes(fontSize: 12, color: UIColor.gray))
+                let labelTitle = labelAttributedString
+                let label = createLabel(labelAtributedText: labelTitle)
+                let views = ["label": label] as [String : UIView]
+            
+                Utils.setContrainsVertical(label: label, previus: previus, constrain: 15)
+                Utils.setContrainsHorizontal(views: views, constrain: 20)
+            
+                let labelHeight = label.requiredHeight()
+                label.frame.size.width = view.frame.width
+                label.frame.size.height = labelHeight
+            
+                previus = label
+            }
+
             if instruction.actions != nil && (instruction.actions?.count)! > 0 {
                 if instruction.actions![0].tag == ActionTag.LINK.rawValue {
                     let button = MPButton(frame: CGRect(x: 0, y: 0, width: 160, height: 30))
