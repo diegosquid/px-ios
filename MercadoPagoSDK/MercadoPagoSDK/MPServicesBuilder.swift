@@ -20,6 +20,15 @@ open class MPServicesBuilder: NSObject {
         self.createNewCardToken(cardToken,baseURL: ServicePreference.MP_API_BASE_URL,success: success,failure: failure);
     }
     
+    
+    open class func createNewSavedCard(cardId : String, ccv: String, success:@escaping (_ token: Token) -> Void,
+                                       failure: ((_ error: NSError) -> Void)?){
+        let savedCard = SavedCardToken(cardId: cardId,securityCode: ccv);
+        
+        self.createSavedCardToken(savedCard, success: success,failure: failure);
+    }
+    
+    
     open class func createNewCardToken(_ cardToken: CardToken, baseURL: String = ServicePreference.MP_API_BASE_URL,
                                        success:@escaping (_ token: Token) -> Void,
                                        failure: ((_ error: NSError) -> Void)?) {
