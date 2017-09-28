@@ -15,7 +15,6 @@ open class InstructionsViewController: MercadoPagoUIViewController, UITableViewD
     var paymentResult: PaymentResult!
     var bundle = MercadoPago.getBundle()
     var color: UIColor?
-    var instructionsInfo: InstructionsInfo?
     var paymentResultScreenPreference: PaymentResultScreenPreference!
 
     override open var screenName: String { get { return TrackingUtil.SCREEN_NAME_PAYMENT_RESULT_INSTRUCTIONS} }
@@ -64,18 +63,11 @@ open class InstructionsViewController: MercadoPagoUIViewController, UITableViewD
 
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if self.viewModel.instructionsInfo == nil {
-            self.showLoading()
-            self.viewModel.getInstructions {
-                self.hideLoading()
-                self.tableView.reloadData()
-            }
-        } else {
-            self.tableView.reloadData()
-        }
+        self.tableView.reloadData()
     }
-    public init(paymentResult: PaymentResult, callback : @escaping ( _ status: PaymentResult.CongratsState) -> Void, paymentResultScreenPreference: PaymentResultScreenPreference = PaymentResultScreenPreference()) {
-        self.viewModel = InstructionsViewModel(paymentResult: paymentResult, paymentResultScreenPreference: paymentResultScreenPreference, callback: callback)
+    
+    public init(paymentResult: PaymentResult, instructionsInfo: InstructionsInfo, callback : @escaping ( _ status: PaymentResult.CongratsState) -> Void, paymentResultScreenPreference: PaymentResultScreenPreference = PaymentResultScreenPreference()) {
+        self.viewModel = InstructionsViewModel(paymentResult: paymentResult, paymentResultScreenPreference: paymentResultScreenPreference, instructionsInfo: instructionsInfo, callback: callback)
         super.init(nibName: "InstructionsViewController", bundle: bundle)
         self.paymentResult = paymentResult
         self.paymentResultScreenPreference = paymentResultScreenPreference

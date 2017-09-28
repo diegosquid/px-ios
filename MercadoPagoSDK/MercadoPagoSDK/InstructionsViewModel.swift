@@ -10,13 +10,14 @@ import Foundation
 
 open class InstructionsViewModel: NSObject {
     var paymentResult: PaymentResult!
-    var instructionsInfo: InstructionsInfo?
+    var instructionsInfo: InstructionsInfo!
     var paymentResultScreenPreference: PaymentResultScreenPreference!
     var callback : ( _ status: PaymentResult.CongratsState) -> Void
     
-    public init(paymentResult: PaymentResult, paymentResultScreenPreference: PaymentResultScreenPreference, callback : @escaping ( _ status: PaymentResult.CongratsState) -> Void) {
+    public init(paymentResult: PaymentResult, paymentResultScreenPreference: PaymentResultScreenPreference, instructionsInfo: InstructionsInfo, callback : @escaping ( _ status: PaymentResult.CongratsState) -> Void) {
         self.paymentResult = paymentResult
         self.paymentResultScreenPreference = paymentResultScreenPreference
+        self.instructionsInfo = instructionsInfo
         self.callback = callback
     }
     
@@ -101,23 +102,4 @@ open class InstructionsViewModel: NSObject {
         case body = 1
         case footer = 2
     }
-    
-    open func getInstructions(success: @escaping () -> Void) {
-        if let paymentId = paymentResult._id,
-            let paymentTypeId = self.paymentResult.paymentData?.getPaymentMethod()?.paymentTypeId {
-            MPServicesBuilder.getInstructions(for: paymentId, paymentTypeId : paymentTypeId, baseURL:MercadoPagoCheckoutViewModel.servicePreference.getDefaultBaseURL(), success: { (instructionsInfo : InstructionsInfo) -> Void in
-                self.instructionsInfo = instructionsInfo
-                success()
-            }
-                , failure: { (error) -> Void in
-//                self.requestFailure(error, requestOrigin: ApiUtil.RequestOrigin.GET_INSTRUCTIONS.rawValue, callback: {
-//                    self.getInstructions()
-//                }, callbackCancel: {
-//                    self.dismiss(animated: true, completion: {})
-//                })
-//                self.hideLoading()
-            })
-        }
-    }
 }
-
