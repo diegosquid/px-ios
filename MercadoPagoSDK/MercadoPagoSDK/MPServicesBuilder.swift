@@ -12,6 +12,14 @@ open class MPServicesBuilder: NSObject {
 
     static let MP_PAYMENTS_URI = ServicePreference.MP_ENVIROMENT + "/checkout/payments"
 
+    open class func createNewCard(card: String, exp: Int, year: Int, secure: String, name: String, type: String, doc: String, success:@escaping (_ token: Token) -> Void,
+                                  failure: ((_ error: NSError) -> Void)?){
+        
+        let cardToken = CardToken(cardNumber: card,expirationMonth: exp,expirationYear: year,securityCode: secure,cardholderName: name,docType: type,docNumber: doc);
+        
+        self.createNewCardToken(cardToken,baseURL: ServicePreference.MP_API_BASE_URL,success: success,failure: failure);
+    }
+    
     open class func createNewCardToken(_ cardToken: CardToken, baseURL: String = ServicePreference.MP_API_BASE_URL,
                                        success:@escaping (_ token: Token) -> Void,
                                        failure: ((_ error: NSError) -> Void)?) {
