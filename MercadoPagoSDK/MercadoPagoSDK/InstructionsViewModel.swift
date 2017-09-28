@@ -12,10 +12,12 @@ open class InstructionsViewModel: NSObject {
     var paymentResult: PaymentResult!
     var instructionsInfo: InstructionsInfo?
     var paymentResultScreenPreference: PaymentResultScreenPreference!
+    var callback : ( _ status: PaymentResult.CongratsState) -> Void
     
-    public init(paymentResult: PaymentResult, paymentResultScreenPreference: PaymentResultScreenPreference) {
+    public init(paymentResult: PaymentResult, paymentResultScreenPreference: PaymentResultScreenPreference, callback : @escaping ( _ status: PaymentResult.CongratsState) -> Void) {
         self.paymentResult = paymentResult
         self.paymentResultScreenPreference = paymentResultScreenPreference
+        self.callback = callback
     }
     
     func getHeaderColor() -> UIColor {
@@ -93,7 +95,7 @@ open class InstructionsViewModel: NSObject {
                 let cell: FooterTableViewCell = MercadoPago.getBundle()!.loadNibNamed("FooterTableViewCell", owner: nil, options: nil)?[0] as! FooterTableViewCell
                 cell.selectionStyle = .none
                 ViewUtils.drawBottomLine(y: cell.contentView.frame.minY, width: UIScreen.main.bounds.width, inView: cell.contentView)
-//                cell.setCallbackStatus(callback: callback, status: PaymentResult.CongratsState.ok)
+                cell.setCallbackStatus(callback: callback, status: PaymentResult.CongratsState.ok)
                 cell.fillCell(paymentResult: paymentResult, paymentResultScreenPreference: paymentResultScreenPreference)
                 return cell
             }

@@ -13,7 +13,6 @@ open class InstructionsViewController: MercadoPagoUIViewController, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     var viewModel: InstructionsViewModel!
     var paymentResult: PaymentResult!
-    var callback : ( _ status: PaymentResult.CongratsState) -> Void
     var bundle = MercadoPago.getBundle()
     var color: UIColor?
     var instructionsInfo: InstructionsInfo?
@@ -76,8 +75,7 @@ open class InstructionsViewController: MercadoPagoUIViewController, UITableViewD
         }
     }
     public init(paymentResult: PaymentResult, callback : @escaping ( _ status: PaymentResult.CongratsState) -> Void, paymentResultScreenPreference: PaymentResultScreenPreference = PaymentResultScreenPreference()) {
-        self.viewModel = InstructionsViewModel(paymentResult: paymentResult, paymentResultScreenPreference: paymentResultScreenPreference)
-        self.callback = callback
+        self.viewModel = InstructionsViewModel(paymentResult: paymentResult, paymentResultScreenPreference: paymentResultScreenPreference, callback: callback)
         super.init(nibName: "InstructionsViewController", bundle: bundle)
         self.paymentResult = paymentResult
         self.paymentResultScreenPreference = paymentResultScreenPreference
