@@ -21,7 +21,7 @@ open class InstructionsViewModel: NSObject {
     }
     
     func getHeaderColor() -> UIColor {
-        return UIColor(red: 255, green: 161, blue: 90)
+        return UIColor.instructionsHeaderColor()
     }
     
     func heightForRowAt(_ indexPath: IndexPath) -> CGFloat {
@@ -35,20 +35,14 @@ open class InstructionsViewModel: NSObject {
         return (instructionsInfo != nil) ? 3 : 0
     }
     
-    public enum tableSection: Int {
-        case header = 0
-        case body = 1
-        case footer = 2
-    }
-    
     func numberOfRowsInSection(_ section: Int) -> Int {
         switch section {
-        case tableSection.header.rawValue:
+        case Sections.header.rawValue:
             let numberOfCells =  shouldShowSubtitle() ? 2 : 1
             return numberOfCells
-        case tableSection.body.rawValue:
+        case Sections.body.rawValue:
             return 1
-        case tableSection.footer.rawValue:
+        case Sections.footer.rawValue:
             let numberOfCells = shouldShowSecundaryInformation() ? 2 : 1
             return numberOfCells
         default:
@@ -56,17 +50,9 @@ open class InstructionsViewModel: NSObject {
         }
     }
     
-    func shouldShowSubtitle() -> Bool {
-        return (instructionsInfo?.hasSubtitle())!
-    }
-    
-    func shouldShowSecundaryInformation() -> Bool {
-        return MercadoPagoCheckoutViewModel.servicePreference.shouldShowEmailConfirmationCell() && (instructionsInfo?.hasSecundaryInformation())!
-    }
-    
     func getCellForRowAt(_ indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
-        case tableSection.header.rawValue:
+        case Sections.header.rawValue:
             if indexPath.row == 0 {
                 let cell: HeaderCongratsTableViewCell = MercadoPago.getBundle()!.loadNibNamed("HeaderCongratsTableViewCell", owner: nil, options: nil)?[0] as! HeaderCongratsTableViewCell
                 cell.fillCell(instructionsInfo: instructionsInfo!, color: getHeaderColor())
@@ -78,7 +64,7 @@ open class InstructionsViewModel: NSObject {
                 cell.selectionStyle = .none
                 return cell
             }
-        case tableSection.body.rawValue:
+        case Sections.body.rawValue:
             let cell: InstructionBodyTableViewCell = MercadoPago.getBundle()!.loadNibNamed("InstructionBodyTableViewCell", owner: nil, options: nil)?[0] as! InstructionBodyTableViewCell
             cell.selectionStyle = .none
             ViewUtils.drawBottomLine(y: cell.contentView.frame.minY, width: UIScreen.main.bounds.width, inView: cell.contentView)
@@ -100,6 +86,20 @@ open class InstructionsViewModel: NSObject {
                 return cell
             }
         }
+    }
+    
+    func shouldShowSubtitle() -> Bool {
+        return (instructionsInfo?.hasSubtitle())!
+    }
+    
+    func shouldShowSecundaryInformation() -> Bool {
+        return MercadoPagoCheckoutViewModel.servicePreference.shouldShowEmailConfirmationCell() && (instructionsInfo?.hasSecundaryInformation())!
+    }
+    
+    public enum Sections: Int {
+        case header = 0
+        case body = 1
+        case footer = 2
     }
     
     open func getInstructions(success: @escaping () -> Void) {
